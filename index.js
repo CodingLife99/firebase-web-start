@@ -1,16 +1,11 @@
-// Import stylesheets
 import './style.css';
-// Firebase App (the core Firebase SDK) is always required and must be listed first
 import * as firebase from "firebase/app";
-
-// Add the Firebase products that you want to use
 import "firebase/auth";
 import "firebase/firestore";
 
 import * as firebaseui from 'firebaseui';
 
-// Document elements
-const startRsvpButton = document.getElementById('startRsvp');
+const startRsvpButton = document.getElementById('startLogin');
 const guestbookContainer = document.getElementById('guestbook-container');
 
 const form = document.getElementById('leave-message');
@@ -22,9 +17,6 @@ const rsvpNo = document.getElementById('rsvp-no');
 
 var rsvpListener = null;
 var guestbookListener = null;
-
-// Add Firebase project configuration object here
-// var firebaseConfig = {};
 
 var firebaseConfig = {
     apiKey: "AIzaSyASKFYJa7hdAC1l_MbRrDwKTQtDrntedzo",
@@ -45,14 +37,11 @@ const uiConfig = {
   ],
   callbacks: {
     signInSuccessWithAuthResult: function(authResult, redirectUrl){
-      // Handle sign-in.
-      // Return false to avoid redirect.
       return false;
     }
   }
 };
 
-// const ui = new firebaseui.auth.AuthUI(firebase.auth());
 const ui = new firebaseui.auth.AuthUI(firebase.auth());
 
 startRsvpButton.addEventListener("click",
@@ -72,7 +61,7 @@ firebase.auth().onAuthStateChanged((user)=> {
   subscribeCurrentRSVP(user);
 }
 else{
-  startRsvpButton.textContent = "RSVP";
+  startRsvpButton.textContent = "Login";
   guestbookContainer.style.display = "none";
   unsubscribeGuestbook();
   unsubscribeCurrentRSVP();
